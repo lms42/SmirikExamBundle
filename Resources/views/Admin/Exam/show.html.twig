@@ -1,0 +1,49 @@
+{% extends 'SmirikAdminBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Show results of exam'|trans }}{% endblock %}
+
+{% block header %}
+    <h1>{{ exam.name }}
+        <small>{{ 'results'|trans }}</small>
+    </h1>
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>{{ 'User'|trans }}</th>
+      <th>{{ 'Quiz'|trans }}</th>
+      <th>{{ 'Correct answers'|trans }}</th>
+      <th>{{ 'Number of questions'|trans }}</th>
+      <th>%</th>
+      <th>{{ 'Date'|trans }}</th>
+    </tr>
+  </thead>
+  {% for exam_user in exam_users %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ exam_user.user.username }}</td>
+      <td>{{ exam.quiz.title }}</td>
+      {% if exam_user.userQuiz.numRightAnswers is defined  %}
+          {% set uq = exam_user.userQuiz %}
+          <td>{{ uq.numRightAnswers }}</td>
+          <td>{{ exam.quiz.numQuestions }}</td>
+          <td>{{ '%10.0f'|format(uq.numRightAnswers / exam.quiz.numQuestions * 100) }}%</td>
+          <td>{{ uq.CreatedAt|date('Y-m-d') }}</td>
+      {% else %}
+      {% for index in [1,2,3,4]  %}
+          <td>&mdash;</td>
+      {% endfor %}
+      {% endif %}
+    </tr>
+  {% endfor %}
+</table>
+
+<div class="well">
+    <a href="{{ path('admin_exams_index') }}" class="btn">{{ 'Back'|trans }}</a>
+</div>
+
+{% endblock %}

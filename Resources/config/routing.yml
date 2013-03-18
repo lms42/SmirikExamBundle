@@ -1,0 +1,52 @@
+
+admin_exams_index:
+  pattern: /exams
+  defaults: { _controller: SmirikExamBundle:AdminExam:index, page: 1 }
+
+admin_exams_list:
+  pattern: /exams/{page}
+  defaults: { _controller: SmirikExamBundle:AdminExam:index, page: 1 }
+  requirements:
+    page:   \d+
+
+admin_exams_edit:
+  pattern: /exams/{id}/edit
+  defaults: { _controller: SmirikExamBundle:AdminExam:edit }
+  requirements:
+    id:   \d+
+
+admin_exams_delete:
+  pattern: /exams/{id}/delete
+  defaults: { _controller: SmirikExamBundle:AdminExam:delete }
+  requirements:
+    id:   \d+
+
+admin_exams_new:
+  pattern: /exams/new
+  defaults: { _controller: SmirikExamBundle:AdminExam:new }
+
+admin_exams_types_index:
+  pattern: /exams_types
+  defaults: { _controller: SmirikExamBundle:AdminExamType:index, page: 1 }
+
+admin_exams_types_list:
+  pattern: /exams_types/{page}
+  defaults: { _controller: SmirikExamBundle:AdminExamType:index, page: 1 }
+  requirements:
+    page:   \d+
+
+admin_exams_types_edit:
+  pattern: /exams_types/{id}/edit
+  defaults: { _controller: SmirikExamBundle:AdminExamType:edit }
+  requirements:
+    id:   \d+
+
+admin_exams_types_delete:
+  pattern: /exams_types/{id}/delete
+  defaults: { _controller: SmirikExamBundle:AdminExamType:delete }
+  requirements:
+    id:   \d+
+
+admin_exams_types_new:
+  pattern: /exams_types/new
+  defaults: { _controller: SmirikExamBundle:AdminExamType:new }

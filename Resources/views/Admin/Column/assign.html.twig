@@ -1,0 +1,7 @@
+<td class="center">
+    {% if item.started or item.closed %}
+        <div class="label">{{ 'Closed'|trans }}</div>
+    {% else %}
+        <a class="btn" href="{{ path(action.route, { 'id': item.id }) }}">{{ action.label|trans }}</a>
+    {% endif %}
+</td>

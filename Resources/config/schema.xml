@@ -1,0 +1,43 @@
+<database name="default" namespace="Smirik\ExamBundle\Model" defaultIdMethod="native">
+    
+    <table name="exams" phpName="Exam" idMethod="native">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="quiz_id" type="INTEGER" required="true" />
+        <column name="type_id" type="INTEGER" required="true" />
+        <column name="name" type="VARCHAR" size="100" required="true" primaryString="true" />
+        <column name="started_at" type="TIMESTAMP" required="false" />
+        <column name="description" type="LONGVARCHAR" required="true"/>
+        <column name="status" type="INTEGER" required="false" default="0"/>
+        <behavior name="timestampable"/>
+        
+        <foreign-key foreignTable="exams_types">
+            <reference local="type_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="quiz">
+            <reference local="quiz_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    
+    <table name="exams_types" phpName="ExamType" idMethod="native">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="name" type="VARCHAR" size="100" required="true" primaryString="true" />
+    </table>
+    
+    <table name="exams_users" phpName="ExamUser">
+        <column name="id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="exam_id" type="integer" required="true" />
+        <column name="user_id" type="INTEGER" required="true" />
+        <column name="user_quiz_id" type="INTEGER" required="false" />
+
+        <foreign-key foreignTable="exams">
+            <reference local="exam_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="fos_user">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="users_quiz">
+            <reference local="user_quiz_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    
+</database>

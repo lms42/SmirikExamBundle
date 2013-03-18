@@ -1,0 +1,107 @@
+columns:
+    id:
+        label: Id
+        name: id
+        type: integer
+        builder: simple
+        options:
+            listable: true
+            editable: false
+            sortable: true
+            filterable: true
+    name:
+        label: Name
+        name: name
+        type: string
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
+            filterable: true
+    started_at:
+        label: Date
+        name: started_at
+        type: date
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
+            filterable: true
+    exam_type:
+        label: Type
+        name: exam_type
+        type: string
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
+            filterable: true
+    quiz:
+        label: Quiz
+        name: quiz
+        type: string
+        builder: simple
+        options:
+            listable: true
+            editable: true
+            sortable: true
+            filterable: true
+    description:
+        label: Description
+        name: description
+        type: text
+        builder: simple
+        options:
+            listable: false
+            editable: true
+            sortable: true
+            filterable: true
+    status:
+        label: 'Status'
+        name: status
+        type: integer
+        builder: simple
+        options:
+            listable: false
+            editable: true
+            sortable: true
+            filterable: true
+actions:
+    create:
+        route: admin_exams_new
+        extends: create
+    start:
+        label:   Start
+        name:    start
+        route:   admin_exams_start
+        builder: object
+        options:
+            route_with_id: true
+            confirmation:  false
+        template: SmirikExamBundle:Admin/Column:start.html.twig
+    show:
+        label:   Show
+        name:    show
+        route:   admin_exams_show
+        builder: object
+        options:
+            route_with_id: true
+            confirmation:  false
+    assign:
+        label:   Assign
+        name:    assign
+        route:   admin_exams_assign
+        builder: object
+        options:
+            route_with_id: true
+            confirmation:  false
+        template: SmirikExamBundle:Admin/Column:assign.html.twig
+    edit:
+        route: admin_exams_edit
+        extends: edit
+    delete:
+        route: admin_exams_delete
+        extends: delete

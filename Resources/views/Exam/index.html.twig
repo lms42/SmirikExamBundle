@@ -1,0 +1,37 @@
+{% extends 'SmirikQuizBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Exams results'|trans }}{% endblock %}
+
+{% block header %}
+<h1>{{ 'Exams'|trans }} <small>{{ 'results'|trans }}</small></h1>
+{% endblock %}
+
+{% block content %}
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ 'Name'|trans }}</th>
+                <th>{{ 'Type'|trans }}</th>
+                <th>{{ 'Correct answers'|trans }}</th>
+                <th>{{ 'Number of questions'|trans }}</th>
+                <th>%</th>
+                <th>{{ 'Date'|trans }}</th>
+            </tr>
+        </thead>
+        {% for user_exam in user_exams %}
+        {% set percent = '%10.0f'|format(user_exam.userQuiz.numRightAnswers / user_exam.userQuiz.Quiz.numQuestions * 100) %}
+        <tr{% if percent > 80 %} class="success"{% endif %}{% if percent < 50 %} class="error"{% endif %}>
+            <td>{{ loop.index }}</td>
+            <td>{{ user_exam.Exam.name }}</td>
+            <td>{{ user_exam.Exam.ExamType.name }}</td>
+            <td>{{ user_exam.userQuiz.numRightAnswers }}</td>
+            <td>{{ user_exam.userQuiz.Quiz.numQuestions }}</td>
+            <td>{{ percent }}%</td>
+            <td>{{ user_exam.userQuiz.createdAt('Y-m-d H:i') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

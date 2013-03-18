@@ -1,0 +1,23 @@
+{% extends 'SmirikAdminBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Assign exam to the users'|trans }}{% endblock %}
+
+{% block header %}
+    <h1>{{ 'Assign exam'|trans }}
+        <small>{{ 'to users'|trans }}</small>
+    </h1>
+{% endblock %}
+
+{% block content %}
+<form name="assign-form" action="{{ path('admin_exams_assign', {'id': exam.id }) }}" method="post">
+    <div id="content">
+    </div>
+    <button type="submit" class="btn">{{ 'admin.quiz.assign'|trans }}</button>
+</form>
+
+<script language="JavaScript">
+var default_route = '{{ path("admin_users_list", {"page": 1, "sort": "id", "sort_type" : "asc" }) }}';
+loadContent(default_route);
+</script>
+
+{% endblock %}

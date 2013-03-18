@@ -1,0 +1,11 @@
+services:
+    exams.configure_menu_listener:
+        class: Smirik\ExamBundle\Listener\ConfigureMenuListener
+        arguments: ["@security.context", "@translator"]
+        tags:
+          - { name: kernel.event_listener, event: admin.menu_configure, method: onMenuConfigure }
+          - { name: kernel.event_listener, event: main.menu_configure, method: onMainMenuConfigure }
+    exam.manager:
+        class: Smirik\ExamBundle\Manager\ExamManager
+        calls:
+            - [ "setUserQuizManager", [@user_quiz.manager] ]
