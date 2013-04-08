@@ -23,9 +23,12 @@ class ExamManager
      */
     public function assign($exam, $ids)
     {
-        foreach ($ids as $id)
+        if (count($ids) > 0)
         {
-            $this->findOrCreate($exam, $id);
+            foreach ($ids as $id)
+            {
+                $this->findOrCreate($exam, $id);
+            }
         }
     }
     
@@ -81,7 +84,13 @@ class ExamManager
             $exam_user->setUserQuizId($user_quiz->getId());
             $exam_user->save();
         }
-        $exam->setStatus(1);
+        $exam->start();
+        $exam->save();
+    }
+    
+    public function close($exam)
+    {
+        $exam->close();
         $exam->save();
     }
     

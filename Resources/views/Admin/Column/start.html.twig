@@ -1,6 +1,7 @@
 <td class="center">
     {% if item.started %}
-        <a class="btn" href="{{ path(action.route, { 'id': item.id }) }}">{{ 'Close'|trans }}</a>
+        <a class="btn btn-mini" href="{{ path(action.route, { 'id': item.id }) }}">{{ 'Append'|trans }}</a> 
+        <a class="btn btn-mini" href="{{ path('admin_exams_close', { 'id': item.id }) }}">{{ 'Close'|trans }}</a>
     {% elseif item.closed %}
         <div class="label">{{ 'Closed'|trans }}</div>
     {% else %}

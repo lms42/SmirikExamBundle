@@ -17,4 +17,14 @@ class Exam extends BaseExam
         return ($this->getStatus() == 2);
     }
     
+    public function start()
+    {
+        $this->setStatus(1);
+    }
+    
+    public function close()
+    {
+        $this->setStatus(2);
+    }
+    
 }

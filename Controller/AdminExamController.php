@@ -58,5 +58,16 @@ class AdminExamController extends BaseController
         return $this->redirect($this->generateUrl('admin_exams_index'));
     }
     
+    /**
+     * @Route("/admin/exams/{id}/close", name="admin_exams_close")
+     * @ParamConverter("exam", options={ "mapping"={ "id" : "id" }})
+     */
+    public function closeAction(\Smirik\ExamBundle\Model\Exam $exam)
+    {
+        $exam_manager = $this->get('exam.manager');
+        $exam_manager->close($exam);
+        return $this->redirect($this->generateUrl('admin_exams_index'));
+    }
+    
 }
 

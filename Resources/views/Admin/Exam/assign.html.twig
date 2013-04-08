@@ -9,15 +9,22 @@
 {% endblock %}
 
 {% block content %}
-<form name="assign-form" action="{{ path('admin_exams_assign', {'id': exam.id }) }}" method="post">
-    <div id="content">
-    </div>
+<div id="content">
+</div>
+<form id="assign-form" name="assign-form" action="{{ path('admin_exams_assign', {'id': exam.id }) }}" method="post">
     <button type="submit" class="btn">{{ 'admin.quiz.assign'|trans }}</button>
 </form>
 
-<script language="JavaScript">
-var default_route = '{{ path("admin_users_list", {"page": 1, "sort": "id", "sort_type" : "asc" }) }}';
-loadContent(default_route);
-</script>
+{% endblock %}
 
+{% block javascripts %}
+
+    {{ parent() }}
+
+    {% javascripts '@SmirikExamBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript" charset="utf-8">
+        var default_route = '{{ path("admin_users_list", {"page": 1, "sort": "id", "sort_type" : "asc" }) }}';
+    </script>
 {% endblock %}

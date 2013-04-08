@@ -25,7 +25,7 @@
   {% for exam_user in exam_users %}
     <tr>
       <td>{{ loop.index }}</td>
-      <td>{{ exam_user.user.username }}</td>
+      <td>{{ exam_user.user.profile.name }}</td>
       <td>{{ exam.quiz.title }}</td>
       {% if exam_user.userQuiz.numRightAnswers is defined  %}
           {% set uq = exam_user.userQuiz %}
