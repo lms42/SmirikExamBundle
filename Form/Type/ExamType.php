@@ -12,7 +12,7 @@ class ExamType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('started_at', 'datetime', array(
+            ->add('started_at', 'date', array(
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
             ))
