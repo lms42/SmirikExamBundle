@@ -69,5 +69,23 @@ class AdminExamController extends BaseController
         return $this->redirect($this->generateUrl('admin_exams_index'));
     }
     
+    /**
+     * @Route("/admin/exams/{id}/diff", name="admin_exams_user_diff")
+     * @ParamConverter("$exam_user", options={ "mapping"={ "id" : "id" }})
+     * @Template("SmirikExamBundle:Admin/Exam:diff.html.twig")
+     */
+    public function diffAction(\Smirik\ExamBundle\Model\ExamUser $exam_user)
+    {
+        $exam_user_manager = $this->get('exam_user.manager');
+        $diff = $exam_user_manager->diff($exam_user);
+        
+        return array(
+            'diff' => $diff,
+            'exam_user' => $exam_user,
+            'exam' => $exam_user->getExam(),
+            'user' => $exam_user->getUser(),
+        );
+    }
+    
 }
 

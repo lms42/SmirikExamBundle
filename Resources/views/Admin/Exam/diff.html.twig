@@ -1,0 +1,39 @@
+{% extends 'SmirikAdminBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Show results of exam'|trans }}{% endblock %}
+
+{% block header %}
+    <h1>{{ user.profile.name }}
+        <small>{{ exam.name }}</small>
+    </h1>
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>{{ 'Question text'|trans }}</th>
+          <th>{{ 'Right answer'|trans }}</th>
+          <th>{{ 'User answer'|trans }}</th>
+  </thead>
+  {% for question in diff.questions %}
+    <tr {% if diff.user_questions[question.id]['IsRight'] is defined and diff.user_questions[question.id]['IsRight'] %}class="success"{% endif %}>
+      <td>{{ loop.index }}</td>
+      <td>{{ question.text|raw }}</td>
+      <td>{{ diff.answers[question.id]|raw }}</td>
+      <td>
+          {% if (diff.user_answers[question.id]) is defined %}
+              {{ diff.user_answers[question.id]|raw }}
+          {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+
+<div class="well">
+    <a href="{{ path('admin_exams_show', {'id': exam_user.examId}) }}" class="btn">{{ 'Back'|trans }}</a>
+</div>
+
+{% endblock %}

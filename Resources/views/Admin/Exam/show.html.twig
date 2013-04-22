@@ -19,6 +19,7 @@
       <th>{{ 'Correct answers'|trans }}</th>
       <th>{{ 'Number of questions'|trans }}</th>
       <th>%</th>
+      <th>{{ 'Difference'|trans }}</th>
       <th>{{ 'Date'|trans }}</th>
     </tr>
   </thead>
@@ -32,6 +33,7 @@
           <td>{{ uq.numRightAnswers }}</td>
           <td>{{ exam.quiz.numQuestions }}</td>
           <td>{{ '%10.0f'|format(uq.numRightAnswers / exam.quiz.numQuestions * 100) }}%</td>
+          <td><a href="{{ path('admin_exams_user_diff', {'id': exam_user.id }) }}">{{ 'Show answers'|trans }}</a></td>
           <td>{{ uq.CreatedAt|date('Y-m-d') }}</td>
       {% else %}
       {% for index in [1,2,3,4]  %}

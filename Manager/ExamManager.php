@@ -80,9 +80,12 @@ class ExamManager
         $quiz = $exam->getQuiz();
         foreach ($exam->getExamUsers() as $exam_user)
         {
-            $user_quiz = $this->user_quiz_manager->findOrCreate($exam_user->getUser(), $quiz);
-            $exam_user->setUserQuizId($user_quiz->getId());
-            $exam_user->save();
+            if (!$exam_user->getUserQuizId())
+            {
+                $user_quiz = $this->user_quiz_manager->findOrCreate($exam_user->getUser(), $quiz);
+                $exam_user->setUserQuizId($user_quiz->getId());
+                $exam_user->save();
+            }
         }
         $exam->start();
         $exam->save();
