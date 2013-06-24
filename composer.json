@@ -1,0 +1,19 @@
+{
+    "name": "smirik/exam-bundle",
+    "description": "Exam bundle.",
+    "keywords": ["exam", "quiz", "lms42"],
+    "homepage": "https://lms42.com",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeny Smirnov",
+            "email": "smirik@gmail.com",
+            "homepage": "http://4xxi.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Smirik\\ExamBundle": "" }
+    },
+    "target-dir": "Smirik/ExamBundle"
+}
