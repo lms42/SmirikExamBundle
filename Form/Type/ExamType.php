@@ -4,10 +4,10 @@ namespace Smirik\ExamBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ExamType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -17,29 +17,30 @@ class ExamType extends AbstractType
                 'format' => 'yyyy-MM-dd',
             ))
             ->add('exam_type', 'model', array(
-                  'class' => 'Smirik\ExamBundle\Model\ExamType',
-                  'required' => false,
+                'class' => 'Smirik\ExamBundle\Model\ExamType',
+                'required' => false,
             ))
             ->add('quiz', 'model', array(
-                  'class' => 'Smirik\QuizBundle\Model\Quiz',
-                  'required' => false,
+                'class' => 'Smirik\QuizBundle\Model\Quiz',
+                'required' => false,
             ))
             ->add('quiz')
-            ->add('description')
+            ->add('description', 'ckeditor')
             ->add('status', 'choice', array(
                 'choices' => array(
                     0 => 'Pending',
                     1 => 'Started',
-                    2 => 'Closed' ,  
+                    2 => 'Closed',
                 ),
-            ));
-        ;
+            ));;
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'data_class' => 'Smirik\ExamBundle\Model\Exam',
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'Smirik\ExamBundle\Model\Exam'
+            )
         );
     }
 
