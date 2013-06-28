@@ -4,10 +4,10 @@ namespace Smirik\ExamBundle\Form\Type\Base;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ExamType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -20,10 +20,12 @@ class ExamType extends AbstractType
         ;
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
-            'data_class' => 'Smirik\ExamBundle\Model\Exam',
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'Smirik\ExamBundle\Model\Exam'
+            )
         );
     }
 
