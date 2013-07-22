@@ -21,16 +21,16 @@
             </tr>
         </thead>
         {% for user_exam in user_exams %}
-        {% set percent = '%10.0f'|format(user_exam.userQuiz.numRightAnswers / user_exam.userQuiz.Quiz.numQuestions * 100) %}
-        <tr{% if percent > 80 %} class="success"{% endif %}{% if percent < 50 %} class="error"{% endif %}>
-            <td>{{ loop.index }}</td>
-            <td>{{ user_exam.Exam.name }}</td>
-            <td>{{ user_exam.Exam.ExamType.name }}</td>
-            <td>{{ user_exam.userQuiz.numRightAnswers }}</td>
-            <td>{{ user_exam.userQuiz.Quiz.numQuestions }}</td>
-            <td>{{ percent }}%</td>
-            <td>{{ user_exam.userQuiz.createdAt('Y-m-d H:i') }}</td>
-        </tr>
+            {% set percent = '%10.0f'|format(user_exam.userQuiz.numRightAnswers / user_exam.userQuiz.Quiz.numQuestions * 100) %}
+            <tr{% if percent > 80 %} class="success"{% endif %}{% if percent < 50 %} class="error"{% endif %}>
+                <td>{{ loop.index }}</td>
+                <td>{% if user_exam.Exam.name is defined %}{{ user_exam.Exam.name }}{% endif %}</td>
+                <td>{% if user_exam.Exam.ExamType.name is defined %}{{ user_exam.Exam.ExamType.name }}{% endif %}</td>
+                <td>{{ user_exam.userQuiz.numRightAnswers }}</td>
+                <td>{{ user_exam.userQuiz.Quiz.numQuestions }}</td>
+                <td>{{ percent }}%</td>
+                <td>{{ user_exam.userQuiz.createdAt('Y-m-d H:i') }}</td>
+            </tr>
         {% endfor %}
     </table>
 
