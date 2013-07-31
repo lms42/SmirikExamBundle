@@ -6,6 +6,16 @@
     {{ 'Exams'|trans }} <small>{{ 'results'|trans }}</small>
 {% endblock %}
 
+{% block breadcrumbs %}
+    {% include "SmirikCoreBundle:Menu:breadcrumbs.html.twig" with {
+        items: [
+            {},
+            {label: "Exams results", uri: "#"},
+        ]}
+    %}
+{% endblock %}
+
+
 {% block content %}
 
     <table class="table table-bordered table-striped">
