@@ -30,11 +30,16 @@ class ConfigureMenuListener
     {
         $menu = $event->getMenu();
 
-        $user = $this->security_context->getToken()->getUser();
-        $id = false;
+        $key = 'Results';
+
+
         if ($this->security_context->isGranted('ROLE_USER')) {
-            $id = $user->getId();
-            $menu['My cabinet']->addChild('Exams results', array('route' => 'exam_index'));
+
+            if (!isset($menu[$key])) {
+                $menu->addChild($key, array('route' => 'account_my'));
+            }
+
+            $menu[$key]->addChild('Exams results', array('route' => 'exam_index'));
         }
     }
 

@@ -3,9 +3,7 @@
 {% block title %}{{ 'Show results of exam'|trans }}{% endblock %}
 
 {% block header %}
-    <h1>{{ user.profile.name }}
-        <small>{{ exam.name }}</small>
-    </h1>
+    {{ user.profile.name }} <small>{{ exam.name }}</small>
 {% endblock %}
 
 {% block content %}
