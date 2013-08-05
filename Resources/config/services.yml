@@ -12,4 +12,4 @@ services:
     exam_user.manager:
         class: Smirik\ExamBundle\Manager\ExamUserManager
         calls:
-            - [ "setManagers", [@question.manager] ]
+            - [ "setManagers", [@quiz.question.manager] ]
