@@ -70,9 +70,9 @@ columns:
             sortable: true
             filterable: true
 actions:
-    create:
+    new:
         route: admin_exams_new
-        extends: create
+        extends: new
     start:
         label:   Start
         name:    start

@@ -20,9 +20,9 @@ columns:
             sortable: true
             filterable: true
 actions:
-    create:
+    new:
         route: admin_exams_types_new
-        extends: create
+        extends: new
     edit:
         route: admin_exams_types_edit
         extends: edit
