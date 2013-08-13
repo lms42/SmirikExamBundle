@@ -32,10 +32,10 @@
         <foreign-key foreignTable="exams">
             <reference local="exam_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="fos_user">
+        <foreign-key foreignTable="fos_user" onDelete="CASCADE">
             <reference local="user_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="users_quiz">
+        <foreign-key foreignTable="users_quiz" onDelete="CASCADE">
             <reference local="user_quiz_id" foreign="id"/>
         </foreign-key>
     </table>
